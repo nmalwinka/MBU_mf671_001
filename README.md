@@ -2,7 +2,9 @@
 
 ### Project: Investigating ubiquitin mediated proteolysis transcriptomic changes in m.5024C>T high vs low heteroplasmy bulk RNA-seq in MEFs.
 
-### Project owner: Michele Frison, Stephen Burr, Malwina Prater & Patrick Chinnery
+### Project owner: Michele Frison, Stephen Burr & Patrick Chinnery
+
+### Analysis: Malwina Prater
 
 ### Abstract:
 
