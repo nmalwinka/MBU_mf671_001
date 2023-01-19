@@ -35,6 +35,22 @@ Heatmap showing all ubiquitin genes for m.5024C>T high vs low heteroplasmy MEFs:
 [Download PDF Version](Results/MBU_mf671_001__ComplexHeatmap_5024_MEFs__ubiquitin_genes_all_.pdf)
 
 
+
+
+Heatmap showing all proteosome genes for m.5024C>T high vs low heteroplasmy MEFs:
+
+<IMG SRC="Results/MBU_mf671_001__ComplexHeatmap_5024_MEFs__proteosome_genes_all_.png" width=800px><br>
+
+[Download PDF Version](Results/MBU_mf671_001__ComplexHeatmap_5024_MEFs__proteosome_genes_all_.pdf)
+
+Heatmap showing differentially expressed proteosome genes for m.5024C>T high vs low heteroplasmy MEFs:
+
+<IMG SRC="Results/MBU_mf671_001__ComplexHeatmap_5024_MEFs__proteosome_genes_DEGs_.png" width=800px><br>
+
+[Download PDF Version](Results/MBU_mf671_001__ComplexHeatmap_5024_MEFs__proteosome_genes_DEGs_.pdf)
+
+
+
 ### Scripts
 
 Script to reproduce the figures can be found here: [MBU_mf671_001_heatmaps.R](Scripts/MBU_mf671_001_heatmaps.R). 
