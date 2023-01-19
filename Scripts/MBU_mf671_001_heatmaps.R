@@ -87,8 +87,19 @@ genes <- gsub( ";.*", "", df$genes)
 
 UbiProt_genes <- unique(genes)
 
-
 resSig_highGlucose[resSig_highGlucose$external_gene_name %in% UbiProt_genes ,]
+
+
+### proteasome genes
+
+df <- data.frame(genes=keggGet("mmu03050")[[1]]$GENE)
+df %>% filter(row_number() %% 2 == 0) -> df ## Select even rows
+genes <- gsub( ";.*", "", df$genes)
+
+Proteosome_genes <- unique(genes)
+
+resSig_highGlucose[resSig_highGlucose$external_gene_name %in% Proteosome_genes ,]
+
 
 
 
@@ -104,6 +115,9 @@ rld_df_meanCentered <- rld_df - rowMeans(rld_df)
 selected_genes <- UbiProt_genes
 #selected_genes <- UbiProt_genes[UbiProt_genes %in% resSig_highGlucose$external_gene_name]
 #selected_genes <- c("Ubb", "Ubc", "Uba52", "Rps27a")
+selected_genes <- Proteosome_genes
+selected_genes <- Proteosome_genes[Proteosome_genes %in% resSig_highGlucose$external_gene_name]
+
 
 
 mat <- rld_df_meanCentered[rownames(rld_df_meanCentered) %in% ensEMBL2id[ ensEMBL2id$external_gene_name %in% selected_genes,]$ensembl_gene_id ,]
@@ -142,6 +156,8 @@ ht1
 pdf(paste(Project, "ComplexHeatmap",  "5024_MEFs", "", "ubiquitin_mediated_proteolysis_genes", "all", ".pdf", sep="_"), onefile=FALSE, width=10, height=20)
 #pdf(paste(Project, "ComplexHeatmap",  "5024_MEFs", "", "ubiquitin_mediated_proteolysis_genes", "DEGs", ".pdf", sep="_"), onefile=FALSE, width=7, height=4.5)
 #pdf(paste(Project, "ComplexHeatmap",  "5024_MEFs", "", "ubiquitin_genes", "all", ".pdf", sep="_"), onefile=FALSE, width=7, height=2.5)
+#pdf(paste(Project, "ComplexHeatmap",  "5024_MEFs", "", "proteosome_genes", "all", ".pdf", sep="_"), onefile=FALSE, width=7, height=9)
+#pdf(paste(Project, "ComplexHeatmap",  "5024_MEFs", "", "proteosome_genes", "DEGs", ".pdf", sep="_"), onefile=FALSE, width=7, height=2)
 par(bg=NA)
 draw(ht1, ht_gap = unit(1.5, "cm"), heatmap_legend_side = "right", annotation_legend_side = "right")
 dev.off()
