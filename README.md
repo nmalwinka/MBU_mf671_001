@@ -51,6 +51,15 @@ Heatmap showing differentially expressed proteosome genes for m.5024C>T high vs 
 
 
 
+Overall proteasome transcription was measured using mean scaled expression of all proteasome genes for each sample/clone to reflect on direction of change and avoid biases introduced by highly expressed genes. Below are boxplot and violin plot showing proteasome module expression in low and high heteroplasmy clones:
+
+
+<IMG SRC="Results/MBU_mf671_001__vln_plot_5024_MEFs__proteasome_module__.png" width=400px><br>
+
+<IMG SRC="Results/MBU_mf671_001__box_plot_5024_MEFs__proteasome_module__.png" width=400px><br>
+
+
+
 ### Scripts
 
 Script to reproduce the figures can be found here: [MBU_mf671_001_heatmaps.R](Scripts/MBU_mf671_001_heatmaps.R). 
