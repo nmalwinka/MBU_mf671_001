@@ -167,3 +167,57 @@ dev.off()
 
 
 
+message("+-------------------------------------------------------------------------------")
+message("+          proteosome overall expression low vs high heteroplasmy               ")
+message("+-------------------------------------------------------------------------------")
+
+sampleTable_coll <- sampleTable_coll[order(sampleTable_coll$Heteroplasmy2),]
+
+counts_proteasome <- rld_df[rownames(rld_df) %in% ensEMBL2id[ensEMBL2id$external_gene_name %in% Proteosome_genes,]$ensembl_gene_id,]
+
+counts_proteasome <- counts_proteasome[, match(sampleTable_coll$Barcode, colnames(counts_proteasome))]
+
+module_proteasome <- data.frame(proteasome_expr=colMeans(counts_proteasome))
+module_proteasome$heteroplasmy <- sampleTable_coll$Heteroplasmy_group
+
+
+box_plot <- ggplot(module_proteasome, aes(x=heteroplasmy, y=proteasome_expr, fill =heteroplasmy )) + 
+  geom_boxplot() + 
+  geom_jitter(shape=16, position=position_jitter(0.2)) + 
+  scale_fill_manual(values = group_cols) + 
+  ylab( "Proteasome overall scaled expression")+
+  xlab("") + 
+  theme(legend.position="none")
+
+pdf(paste(Project, "box_plot",  "5024_MEFs", "", "proteasome_module", "", ".pdf", sep="_"), onefile=FALSE, width=4, height=4)
+par(bg=NA)
+box_plot
+dev.off()
+
+
+#ggplot(module_proteasome, aes(x=heteroplasmy, y=proteasome_expr)) + geom_violin(trim=FALSE) + geom_jitter(shape=16, position=position_jitter(0.2))
+
+t.test(x=module_proteasome[module_proteasome$heteroplasmy=="lowHeteroplasmy",]$proteasome_expr,
+       y=module_proteasome[module_proteasome$heteroplasmy=="highHeteroplasmy",]$proteasome_expr)
+# 0.06
+
+
+group_cols
+
+
+vln_plot <- ggplot(module_proteasome, aes(x=heteroplasmy, y=proteasome_expr, fill =heteroplasmy )) + 
+  geom_violin(trim=FALSE) + geom_boxplot(width=0.1, fill="white") + 
+  geom_jitter(shape=16, position=position_jitter(0.2)) + 
+  scale_fill_manual(values = group_cols) + 
+  ylab( "Proteasome overall scaled expression")+
+  xlab("") + 
+  theme(legend.position="none")
+vln_plot
+
+pdf(paste(Project, "vln_plot",  "5024_MEFs", "", "proteasome_module", "", ".pdf", sep="_"), onefile=FALSE, width=4, height=4)
+par(bg=NA)
+vln_plot
+dev.off()
+
+
+
